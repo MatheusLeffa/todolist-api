@@ -25,7 +25,6 @@ public class TaskModel {
     @Column(length = 50, nullable = false)
     private String title;
 
-    @Column(length = 50)
     private String priority = "Low";
 
     @Column(nullable = false)
@@ -39,4 +38,11 @@ public class TaskModel {
 
     @Column(nullable = false)
     private UUID idUser;
+
+    public void setTitle(String title) throws RuntimeException{
+        if (title.length() > 50){
+            throw new RuntimeException("O titulo deve ter no máximo 50 caracteres.");
+        }
+        this.title = title;
+    }
 }
