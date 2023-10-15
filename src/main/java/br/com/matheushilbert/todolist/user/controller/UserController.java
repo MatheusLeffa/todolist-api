@@ -1,6 +1,7 @@
 package br.com.matheushilbert.todolist.user.controller;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import br.com.matheushilbert.todolist.exception.AlreadyExistsException;
 import br.com.matheushilbert.todolist.user.model.UserModel;
 import br.com.matheushilbert.todolist.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class UserController {
         // Verify if Login alredy exists on the DB.
         UserModel user = this.userRepository.findByLogin(userModel.getLogin());
         if(user != null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The login already exists!");
+            throw new AlreadyExistsException("O login "+ user.getLogin() + " já existe.");
         }
 
         // Hash the password
@@ -33,6 +34,6 @@ public class UserController {
 
         // Create user on DB
         UserModel userCreated = this.userRepository.save(userModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body( userCreated);
+        return ResponseEntity.ok().body( userCreated);
     }
 }
