@@ -5,7 +5,6 @@ import br.com.matheushilbert.todolist.exception.AlreadyExistsException;
 import br.com.matheushilbert.todolist.user.model.UserModel;
 import br.com.matheushilbert.todolist.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +20,7 @@ public class UserController {
 
     @PostMapping("/")
     public ResponseEntity create(@RequestBody UserModel userModel) {
-        // Verify if Login alredy exists on the DB.
+        // Verify if Login already exists on the DB.
         UserModel user = this.userRepository.findByLogin(userModel.getLogin());
         if(user != null){
             throw new AlreadyExistsException("O login "+ user.getLogin() + " já existe.");
