@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -39,9 +41,9 @@ public class TaskModel {
     @Column(nullable = false)
     private UUID idUser;
 
-    public void setTitle(String title) throws RuntimeException{
-        if (title.length() > 50){
-            throw new RuntimeException("O titulo deve ter no máximo 50 caracteres.");
+    public void setTitle(String title) {
+        if (title.length() > 50) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O titulo deve ter no máximo 50 caracteres.");
         }
         this.title = title;
     }

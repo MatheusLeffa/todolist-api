@@ -8,6 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -35,7 +36,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
             // Validar usuário
             UserModel user = userRepository.findByLogin(login);
             if (user == null) {
-                response.sendError(401, "Usuário não existe!");
+                response.sendError(401, "Usuário não autorizado!");
             } else {
 
                 // Validar senha
@@ -46,7 +47,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
                     // Segue para o Controller
                     filterChain.doFilter(request, response);
                 } else {
-                    response.sendError(401, "Senha incorreta!");
+                    response.sendError(401, "Usuário não autorizado!");
                 }
             }
         } else {
