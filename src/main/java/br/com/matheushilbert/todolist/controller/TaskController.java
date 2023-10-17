@@ -1,13 +1,12 @@
-package br.com.matheushilbert.todolist.task.controller;
+package br.com.matheushilbert.todolist.controller;
 
 import br.com.matheushilbert.todolist.Utils.Utils;
 import br.com.matheushilbert.todolist.exception.NotAuthorizedException;
 import br.com.matheushilbert.todolist.exception.NotFoundException;
-import br.com.matheushilbert.todolist.task.model.TaskModel;
-import br.com.matheushilbert.todolist.task.repository.TaskRepository;
+import br.com.matheushilbert.todolist.model.TaskModel;
+import br.com.matheushilbert.todolist.repository.TaskRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

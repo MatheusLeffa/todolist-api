@@ -1,9 +1,9 @@
-package br.com.matheushilbert.todolist.user.controller;
+package br.com.matheushilbert.todolist.controller;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import br.com.matheushilbert.todolist.exception.AlreadyExistsException;
-import br.com.matheushilbert.todolist.user.model.UserModel;
-import br.com.matheushilbert.todolist.user.repository.UserRepository;
+import br.com.matheushilbert.todolist.model.UserModel;
+import br.com.matheushilbert.todolist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,6 +1,6 @@
-package br.com.matheushilbert.todolist.task.repository;
+package br.com.matheushilbert.todolist.repository;
 
-import br.com.matheushilbert.todolist.task.model.TaskModel;
+import br.com.matheushilbert.todolist.model.TaskModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
