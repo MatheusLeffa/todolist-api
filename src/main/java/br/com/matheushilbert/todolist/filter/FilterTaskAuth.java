@@ -36,7 +36,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
             // Validar usuário
             UserModel user = userRepository.findByLogin(login);
             if (user == null) {
-                response.sendError(401, "Usuário não autorizado!");
+                response.sendError(401, "Credênciais inválidas!");
             } else {
 
                 // Validar senha
@@ -47,7 +47,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
                     // Segue para o Controller
                     filterChain.doFilter(request, response);
                 } else {
-                    response.sendError(401, "Usuário não autorizado!");
+                    response.sendError(401, "Credênciais inválidas!");
                 }
             }
         } else {
