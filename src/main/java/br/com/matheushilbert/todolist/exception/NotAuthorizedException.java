@@ -7,10 +7,8 @@ import org.springframework.web.server.ResponseStatusException;
 @Slf4j
 public class NotAuthorizedException extends ResponseStatusException {
 
-    private static final HttpStatus httpStatus = HttpStatus.UNAUTHORIZED;
-
     public NotAuthorizedException(String message) {
-        super(httpStatus, message);
+        super(HttpStatus.UNAUTHORIZED, message);
         log.error(message);
     }
 

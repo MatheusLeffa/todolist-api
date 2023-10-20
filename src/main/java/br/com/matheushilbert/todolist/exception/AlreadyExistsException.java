@@ -7,11 +7,8 @@ import org.springframework.web.server.ResponseStatusException;
 @Slf4j
 public class AlreadyExistsException extends ResponseStatusException {
 
-    private static final HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
-
     public AlreadyExistsException(String message) {
-        super(httpStatus, message);
+        super(HttpStatus.BAD_REQUEST, message);
         log.error(message);
     }
-
 }

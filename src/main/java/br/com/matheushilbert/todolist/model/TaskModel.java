@@ -4,11 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -24,14 +24,17 @@ public class TaskModel {
 
     private String description;
 
+    @Max(value = 50, message = "O titulo deve ter no máximo 50 caracteres!")
+    @NotNull(message = "O titulo não pode ser Null")
     @Column(length = 50, nullable = false)
     private String title;
 
     private String priority = "Low";
-
+    @NotNull(message = "A data de inicio não pode ser Null")
     @Column(nullable = false)
     private LocalDateTime startAt;
 
+    @NotNull(message = "A data de fim não pode ser Null")
     @Column(nullable = false)
     private LocalDateTime endAt;
 
@@ -41,10 +44,4 @@ public class TaskModel {
     @Column(nullable = false)
     private UUID idUser;
 
-    public void setTitle(String title) {
-        if (title.length() > 50) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O titulo deve ter no máximo 50 caracteres.");
-        }
-        this.title = title;
-    }
 }

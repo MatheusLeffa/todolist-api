@@ -7,10 +7,8 @@ import org.springframework.web.server.ResponseStatusException;
 @Slf4j
 public class NotFoundException extends ResponseStatusException {
 
-    private static final HttpStatus httpStatus = HttpStatus.NOT_FOUND;
-
     public NotFoundException(String message) {
-        super(httpStatus, message);
+        super(HttpStatus.NOT_FOUND, message);
         log.error(message);
     }
 }
