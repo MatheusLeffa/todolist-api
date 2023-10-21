@@ -13,18 +13,22 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Entity (name = "tb_users")
+@Entity(name = "tb_users")
 public class UserModel {
 
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
-    @Column(unique = true, nullable = false)
+
+    @Column(unique = true, nullable = false, length = 30)
     private String login;
-    @Column(nullable = false)
+
+    @Column(nullable = false, length = 50)
     private String name;
+
     @Column(nullable = false)
     private String password;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 }

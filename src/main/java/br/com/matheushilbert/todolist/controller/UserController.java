@@ -1,38 +1,41 @@
 package br.com.matheushilbert.todolist.controller;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
-import br.com.matheushilbert.todolist.exception.AlreadyExistsException;
+import br.com.matheushilbert.todolist.dto.UserDTO;
+import br.com.matheushilbert.todolist.mapper.UserMapper;
 import br.com.matheushilbert.todolist.model.UserModel;
-import br.com.matheushilbert.todolist.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.matheushilbert.todolist.service.UserService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/")
-    public ResponseEntity create(@RequestBody UserModel userModel) {
-        // Verify if Login already exists on the DB.
-        UserModel user = this.userRepository.findByLogin(userModel.getLogin());
-        if(user != null){
-            throw new AlreadyExistsException("O login "+ user.getLogin() + " já existe.");
-        }
-
-        // Hash the password
-        String passwordHashed = BCrypt.withDefaults()
-                .hashToString(12, userModel.getPassword().toCharArray());
-        userModel.setPassword(passwordHashed);
-
-        // Create user on DB
-        UserModel userCreated = this.userRepository.save(userModel);
-        return ResponseEntity.ok().body( userCreated);
+    public UserDTO create(@RequestBody UserDTO user) {
+        UserModel entity = UserMapper.dtoToEntity(user);
+        return UserMapper.entityToDto(userService.create(entity));
     }
+
+    @GetMapping("/")
+    public List<UserDTO> findAll() {
+        return userService.findAll()
+                .stream()
+                .map(UserMapper::entityToDto)
+                .toList();
+    }
+
+    @GetMapping("/{id}")
+    public UserDTO findById(@PathVariable UUID id) {
+        return UserMapper.entityToDto(userService.findById(id));
+    }
+
 }
