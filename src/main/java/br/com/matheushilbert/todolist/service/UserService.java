@@ -25,7 +25,7 @@ public class UserService {
         // Verify if Login already exists on the DB.
         UserModel user = this.userRepository.findByLogin(userModel.getLogin());
         if (user != null) {
-            throw new AlreadyExistsException("O login " + user.getLogin() + " já existe.");
+            throw new AlreadyExistsException("The login " + user.getLogin() + " already exists.");
         }
 
         // Hash the password
@@ -43,7 +43,7 @@ public class UserService {
 
     public UserModel findById(UUID id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("ID não localizado!"));
+                .orElseThrow(() -> new NotFoundException("ID not found!"));
     }
 
 }

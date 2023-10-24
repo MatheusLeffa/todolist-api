@@ -27,12 +27,12 @@ public class TaskController {
         // Checks task Date(Now-Begin/End)
         LocalDateTime currentDate = LocalDateTime.now();
         if (currentDate.isAfter(taskModel.getStartAt()) || currentDate.isAfter(taskModel.getEndAt())) {
-            return ResponseEntity.badRequest().body("A data de inicio / data de termino da tarefa deve ser posterior a data atual.");
+            return ResponseEntity.badRequest().body("The start and end date of the task must be after the current date.");
         }
 
         // Checks task Date(Begin-End)
         if (taskModel.getStartAt().isAfter(taskModel.getEndAt())) {
-            return ResponseEntity.badRequest().body("A data de inicio da tarefa deve ser anterior à data de termino.");
+            return ResponseEntity.badRequest().body("The task start date must be before the end date.");
         }
         // Set idUser from request
         UUID idUser = (UUID) request.getAttribute("idUser");
@@ -54,12 +54,12 @@ public class TaskController {
     public ResponseEntity update(@RequestBody TaskModel taskModel, @PathVariable UUID id, HttpServletRequest request){
 
         TaskModel task = this.taskRepository.findById(id)
-                .orElseThrow(()-> new NotFoundException("Tarefa não localizada."));
+                .orElseThrow(()-> new NotFoundException("Task not found."));
 
         UUID idUser = (UUID) request.getAttribute("idUser");
 
         if (!task.getIdUser().equals(idUser)){
-            throw new NotAuthorizedException("O usuário não é dono desta tarefa.");
+            throw new NotAuthorizedException("The user does not own this task.");
         }
 
         Utils.copyNonNullProperties(taskModel,task);

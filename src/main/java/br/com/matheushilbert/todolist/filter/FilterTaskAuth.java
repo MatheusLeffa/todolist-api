@@ -29,25 +29,25 @@ public class FilterTaskAuth extends OncePerRequestFilter {
 
         if (servletPath.startsWith("/tasks/")) {
 
-            // Pegar o header "Authorization" da request, e extrair o LOGIN e PASSWORD para um String[].
-            String[] credencials = getAuthorizationCredentials(request);
-            String login = credencials[0];
-            String password = credencials[1];
+            // Get the "Authorization" header from the request, and extract the LOGIN and PASSWORD to a String[].
+            String[] credentials = getAuthorizationCredentials(request);
+            String login = credentials[0];
+            String password = credentials[1];
 
-            // Validar usuário
+            // Authenticate user
             UserModel user = userRepository.findByLogin(login);
             if (user == null) {
-                response.sendError(401, "Credênciais inválidas!");
+                response.sendError(401, "invalid credentials!");
             } else {
-                // Validar senha
+                // Authenticate password
                 BCrypt.Result passwordVerify = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
                 if (passwordVerify.verified) {
                     // Set idUser of the request
                     request.setAttribute("idUser", user.getId());
-                    // Segue para o Controller
+                    // Go to Controller
                     filterChain.doFilter(request, response);
                 } else {
-                    response.sendError(401, "Credênciais inválidas!");
+                    response.sendError(401, "invalid credentials!");
                 }
             }
         } else {
