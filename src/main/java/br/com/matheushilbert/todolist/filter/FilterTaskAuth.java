@@ -1,8 +1,8 @@
 package br.com.matheushilbert.todolist.filter;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import br.com.matheushilbert.todolist.model.UserModel;
-import br.com.matheushilbert.todolist.repository.UserRepository;
+import br.com.matheushilbert.todolist.modules.user.model.UserModel;
+import br.com.matheushilbert.todolist.modules.user.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

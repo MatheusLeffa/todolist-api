@@ -1,4 +1,4 @@
-package br.com.matheushilbert.todolist.dto;
+package br.com.matheushilbert.todolist.modules.task.dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;

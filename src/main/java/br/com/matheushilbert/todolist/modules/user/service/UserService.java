@@ -1,10 +1,10 @@
-package br.com.matheushilbert.todolist.service;
+package br.com.matheushilbert.todolist.modules.user.service;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import br.com.matheushilbert.todolist.exception.AlreadyExistsException;
 import br.com.matheushilbert.todolist.exception.NotFoundException;
-import br.com.matheushilbert.todolist.model.UserModel;
-import br.com.matheushilbert.todolist.repository.UserRepository;
+import br.com.matheushilbert.todolist.modules.user.model.UserModel;
+import br.com.matheushilbert.todolist.modules.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,9 @@
-package br.com.matheushilbert.todolist.controller;
+package br.com.matheushilbert.todolist.modules.user.controller;
 
-import br.com.matheushilbert.todolist.dto.UserDTO;
-import br.com.matheushilbert.todolist.mapper.UserMapper;
-import br.com.matheushilbert.todolist.model.UserModel;
-import br.com.matheushilbert.todolist.service.UserService;
+import br.com.matheushilbert.todolist.modules.user.dto.UserDTO;
+import br.com.matheushilbert.todolist.modules.user.mapper.UserMapper;
+import br.com.matheushilbert.todolist.modules.user.model.UserModel;
+import br.com.matheushilbert.todolist.modules.user.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
