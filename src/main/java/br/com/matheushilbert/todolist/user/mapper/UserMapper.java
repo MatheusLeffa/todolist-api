@@ -1,7 +1,7 @@
-package br.com.matheushilbert.todolist.modules.user.mapper;
+package br.com.matheushilbert.todolist.user.mapper;
 
-import br.com.matheushilbert.todolist.modules.user.dto.UserDTO;
-import br.com.matheushilbert.todolist.modules.user.model.UserModel;
+import br.com.matheushilbert.todolist.user.dto.UserDTO;
+import br.com.matheushilbert.todolist.user.model.UserModel;
 import org.modelmapper.ModelMapper;
 
 public class UserMapper {

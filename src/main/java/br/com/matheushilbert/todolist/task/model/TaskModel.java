@@ -1,4 +1,4 @@
-package br.com.matheushilbert.todolist.modules.task.model;
+package br.com.matheushilbert.todolist.task.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,6 +35,6 @@ public class TaskModel {
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
-    private UUID idUser;
+    private UUID creatorId;
 
 }

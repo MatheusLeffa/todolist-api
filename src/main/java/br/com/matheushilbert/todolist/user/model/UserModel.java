@@ -1,4 +1,4 @@
-package br.com.matheushilbert.todolist.modules.user.model;
+package br.com.matheushilbert.todolist.user.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

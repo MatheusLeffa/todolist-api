@@ -1,10 +1,10 @@
-package br.com.matheushilbert.todolist.modules.user.service;
+package br.com.matheushilbert.todolist.user.service;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import br.com.matheushilbert.todolist.exception.AlreadyExistsException;
 import br.com.matheushilbert.todolist.exception.NotFoundException;
-import br.com.matheushilbert.todolist.modules.user.model.UserModel;
-import br.com.matheushilbert.todolist.modules.user.repository.UserRepository;
+import br.com.matheushilbert.todolist.user.model.UserModel;
+import br.com.matheushilbert.todolist.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +43,7 @@ public class UserService {
 
     public UserModel findById(UUID id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("ID not found!"));
+                .orElseThrow(() -> new NotFoundException("User not found!"));
     }
 
 }

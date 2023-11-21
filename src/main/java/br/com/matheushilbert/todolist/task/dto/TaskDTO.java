@@ -1,4 +1,4 @@
-package br.com.matheushilbert.todolist.modules.task.dto;
+package br.com.matheushilbert.todolist.task.dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
@@ -28,6 +28,6 @@ public class TaskDTO {
 
     private LocalDateTime createdAt;
 
-    private UUID idUser;
+    private UUID creatorId;
 
 }

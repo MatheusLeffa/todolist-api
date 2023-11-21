@@ -1,9 +1,10 @@
-package br.com.matheushilbert.todolist.modules.user.controller;
+package br.com.matheushilbert.todolist.user.controller;
 
-import br.com.matheushilbert.todolist.modules.user.dto.UserDTO;
-import br.com.matheushilbert.todolist.modules.user.mapper.UserMapper;
-import br.com.matheushilbert.todolist.modules.user.model.UserModel;
-import br.com.matheushilbert.todolist.modules.user.service.UserService;
+import br.com.matheushilbert.todolist.user.dto.UserDTO;
+import br.com.matheushilbert.todolist.user.mapper.UserMapper;
+import br.com.matheushilbert.todolist.user.model.UserModel;
+import br.com.matheushilbert.todolist.user.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public UserDTO create(@RequestBody UserDTO user) {
+    public UserDTO create(@RequestBody @Valid UserDTO user) {
         UserModel entity = UserMapper.dtoToEntity(user);
         return UserMapper.entityToDto(userService.create(entity));
     }

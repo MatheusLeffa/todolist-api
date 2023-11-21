@@ -1,7 +1,7 @@
-package br.com.matheushilbert.todolist.modules.task.mapper;
+package br.com.matheushilbert.todolist.task.mapper;
 
-import br.com.matheushilbert.todolist.modules.task.dto.TaskDTO;
-import br.com.matheushilbert.todolist.modules.task.model.TaskModel;
+import br.com.matheushilbert.todolist.task.dto.TaskDTO;
+import br.com.matheushilbert.todolist.task.model.TaskModel;
 import org.modelmapper.ModelMapper;
 
 public class TaskMapper {
